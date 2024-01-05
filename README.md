@@ -14,12 +14,13 @@ You will need
 - optionally gdb-multiarch to debug. I have version (Ubuntu 14.0.50.20230907-0ubuntu1) 14.0.50.20230907-git.
 - and of course cmake. I have version 3.27.4.
 
-To create the test program, I am using ST's [HAL](https://www.st.com/en/embedded-software/stm32cubef4.html), which I got with the ST tool [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html). I tried to keep the repository as lean as possible, and therefore did not add all of the files that the ST tool generated. In case you need more features from the ST HAL or other libraries, you can simply use STM32CubeMX with the provided project file "stm32firmware.ioc". Just open the file with STM32CubeMX and select what you need.
-Note that STM32CubeMX only generates a Makefile. I wrote the cmake CMakeLists.txt myself based on the Makefile, but it should not be very difficult to modify it.
+To create the test program, I used ST's [HAL](https://www.st.com/en/embedded-software/stm32cubef4.html), which I got with the ST tool [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html). Necessary files are already included in the repository.
+However, I tried to keep the repository as lean as possible, and therefore did not add all of the files that the ST tool generated. In case you need more features from the ST HAL or other libraries, you can simply use STM32CubeMX with the provided project file "stm32firmware.ioc". Just open the file with STM32CubeMX and select what you need.
+Note that STM32CubeMX only generates a Makefile. I wrote the cmake CMakeLists.txt based on the Makefile, but it should not be very difficult to modify it.
 
 Disclaimer: I have not tested the program on a real board. On QEMU:
-- I had to comment out the clock initialization
-- The UART interrupt method was not working
+- I had to comment out the clock initialization. It is probably needed with a real board.
+- The UART interrupt method was not working with QEMU.
 
 ## How to compile
 
@@ -45,6 +46,7 @@ This should print "Hello world" continuously in the terminal.
 
 Edit you application as a static library in the folder "library".
 Then test is (using printf if you need) by editing main.c in "testprogram/Core/Src/".
+
 To debug, run the program with:
 ```
 qemu-system-arm -M olimex-stm32-h405 -S -gdb tcp::12345 -serial mon:stdio -kernel testprogram/test.elf
