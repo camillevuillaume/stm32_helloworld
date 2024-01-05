@@ -1,7 +1,8 @@
 # stm32_helloworld
 Cmake project to cross-compile STM32 Cortex M4 applications and run them on QEMU, with printf support.
 
-You can develop your library (in the project directory "library") and test it with QEMU emulating an STM32 Cortex M4 MCU. The software included support for printf redirected to UART.
+You can develop your library (in the project directory "library") and test it with QEMU emulating an STM32 Cortex M4 MCU. The software includes support for printf redirected to the target UART, which can be visualized on the host computer. In theory, the code should work on a real STM32 board (but some clock setting tuning might be necessary, see below).
+
 The main.c file is located under "testprogram/Core/Src/". It continuously sends "Hello world" to UART1.
 
 ## Depedencies and prerequisites
