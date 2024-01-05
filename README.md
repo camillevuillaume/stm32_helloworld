@@ -14,6 +14,8 @@ You will need
 - and of course cmake. I have version 3.27.4.
 
 To create the test program, I am using ST's [HAL](https://www.st.com/en/embedded-software/stm32cubef4.html), which I got with the ST tool [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html). I tried to keep the repository as lean as possible, and therefore did not add all of the files that the ST tool generated. In case you need more features from the ST HAL or other libraries, you can simply use STM32CubeMX with the provided project file "stm32firmware.ioc". Just open the file with STM32CubeMX and select what you need.
+Note that STM32CubeMX only generates a Makefile. I wrote the cmake CMakeLists.txt myself based on the Makefile, but it should not be very difficult to modify it.
+
 Disclaimer: I have not tested the program on a real board. On QEMU:
 - I had to comment out the clock initialization
 - The UART interrupt method was not working
