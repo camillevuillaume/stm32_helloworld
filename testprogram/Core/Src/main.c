@@ -47,6 +47,7 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+uint8_t buf[5] = {72,69,76,76,79};
 
 /* USER CODE END PV */
 
@@ -104,7 +105,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    //HAL_UART_Transmit(&huart1, buf, 4, 1000);
+    //HAL_UART_Transmit(&huart1, buf, 5, 1000);
     //printf("Hello World\n\r");
     print_hello();
     HAL_Delay(1000);
@@ -244,6 +245,19 @@ int _write(int file, char *ptr, int len)
   HAL_UART_Transmit(&huart1,(uint8_t *)ptr,len,10);
   return len;
 }
+
+// #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+
+// /**
+//   * @brief  Retargets the C library printf function to the USART.
+//   * @param  None
+//   * @retval None
+//   */
+// PUTCHAR_PROTOTYPE
+// {
+//   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+//   return ch;
+// }
 /* USER CODE END 4 */
 
 /**
