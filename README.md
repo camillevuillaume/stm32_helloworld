@@ -13,12 +13,16 @@ You will need
 - newlib for arm-none-eabi, working with newlib-arm-none-eabi-4.1.0-r0
 - qemu-system-arm to run the program. working wiht qemu-system-arm-6.0.0-r5
 - optionally gdb-multiarch to debug, working with gdb-multiarch-10.2-r0
+- optionally doxygen, workging with doxygen-1.9.1-r1
 - make, working with make-4.3-r0
 - and of course cmake, working cmake-3.20.6-r0.
 
 To make things easier, a Dockerfile is provided in order to generate a working toolchain. To generate the image with docker, run the following in the root directory of the project.
 ```
 sudo docker build --tag 'armtools' .
+```
+And then to run:
+```
 sudo docker container run --mount type=bind,source=.,target=/mnt -it armtools
 ```
 This will mount the project within the container and execute a shell with access to a working toolchain.
@@ -42,6 +46,10 @@ Then, simply type:
 make
 ```
 If everything worked fine, you should have test.elf in the directory "build/testprogram".
+Optionally, to generate documentation for the library, run the command below. The html documentation will be generated in build/mylibrary/html.
+```
+make doc
+```
 
 ## How to run the program
 
