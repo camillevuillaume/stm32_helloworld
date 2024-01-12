@@ -14,6 +14,18 @@ project(
 #message(C_compiler="${CMAKE_C_COMPILER}")
 
 add_subdirectory(library)
+# Enable testing functionality
+enable_testing()
+
+# Disable pthreads in Google Test
+set(gtest_disable_pthreads ON)
+
+# Add googletest subdirectory
+add_subdirectory(googletest)
+
+# Indicate where to find the headers for the test
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
 add_subdirectory(testprogram)
 
 
